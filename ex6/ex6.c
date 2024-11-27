@@ -9,8 +9,7 @@ resultados.*/
 
 void geraMatriz (int **matriz, int linhaColuna);
 void imprimeMatriz (int **matriz, int linhaColuna);
-void produtoMatriz (int **matA, int **matB, int **matR, int ordem);
-void matrizTrans (int **matrizT, int **matriz, int linhaColuna);
+void produtoMatriz (int **matA, int **matB, int **matR, int ordem, int *t);
 
 int main ()
 {
@@ -37,8 +36,12 @@ int main ()
     {
         matrizResultado[i] = malloc(MAT*(sizeof(int)));
     }
+    int *t = malloc(sizeof(int));
+    *t = 0;
 
-    produtoMatriz(matrizA, matrizB, matrizResultado, MAT);
+    produtoMatriz(matrizA, matrizB, matrizResultado, MAT, t);
+    printf("Complexidade de tempo: %d\n", *t);
+    printf("Complexidade: O(n^3)");
     return 0;
 }
 
@@ -72,34 +75,21 @@ void imprimeMatriz (int **matriz, int linhaColuna)
     return;
 }
 
-void produtoMatriz (int **matA, int **matB, int **matR, int ordem)
+void produtoMatriz (int **matA, int **matB, int **matR, int ordem, int *t)
 {
-    int **matBtrans = malloc(MAT*(sizeof(int*)));
-    for (int i=0; i<MAT; i++)
-    {
-        matBtrans[i] = malloc(MAT*(sizeof(int)));
-    }
-    matrizTrans(matBtrans, matB, ordem);
-
     for (int i=0; i<ordem; i++)
     {
         for (int j=0; j<ordem; j++)
         {
-            matR[i][j] = 0;
+            int produto = 0;
+            for (int c=0; c<ordem; c++)
+            {
+                produto += matA[i][c] * matB[c][j];
+                (*t)++;
+            }
+            matR[i][j] = produto;
         }
     }
     imprimeMatriz(matR, ordem);
-    return;
-}
-
-void matrizTrans (int **matrizT, int **matriz, int linhaColuna) //Complexidade O(n^2)
-{
-    for (int i=0; i<linhaColuna; i++)
-    {
-        for (int j=0; j<linhaColuna; j++)
-        {
-            matrizT[j][i] = matriz[i][j];
-        }
-    }
     return;
 }
