@@ -70,22 +70,11 @@ void imprime (int **matriz, int linhaColuna)
 
 void matrizTrans (int **matrizT, int **matriz, int linhaColuna, int *tempo) //Complexidade O(n^2)
 {
-    int *p = malloc((linhaColuna*linhaColuna)*sizeof(int)), cont = 0;
-    for (int i=0; i<linhaColuna; i++)
+    for (int i=0; i<linhaColuna; i++)  //Complexidade O(n)
     {
-        for (int j=0; j<linhaColuna; j++)
+        for (int j=0; j<linhaColuna; j++)  //Complexidade O(n)
         {
-            *(p+cont) = matriz[i][j];
-            cont++;
-        }
-    }
-    cont = 0;
-    for (int i=0; i<linhaColuna; i++) //Complexidade O(n)
-    {
-        for (int j=0; j<linhaColuna; j++) //Complexidade O(n)
-        {
-            matrizT[j][i] = *(p+cont);
-            cont++;
+            matrizT[j][i] = matriz[i][j];
             (*tempo)++; //complexidade de tempo
         }
     }
