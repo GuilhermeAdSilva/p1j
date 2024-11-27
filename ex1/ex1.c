@@ -9,6 +9,7 @@ que são função de n e compare os resultados.*/
 
 void preencheVetor (int *vet, int tamanho);
 void maiorElemento (int *vet, int tamanho, int *p, int *ct);
+void imprimeVetor (int *vet, int tamanho);
 
 int main ()
 {
@@ -19,9 +20,10 @@ int main ()
     *p = 0;
     preencheVetor(vetor, TAM);
     maiorElemento(vetor, TAM, p, contatempo);
-    free(contatempo);
-    free(vetor);
-    free(p);
+    imprimeVetor(vetor, TAM);
+    printf("\nMaior elemento: %d\n", *p);
+    printf("Complexidade de tempo: %d\n", *contatempo);
+    printf("Complexidade: O(n)\n");
     return 0;
 }
 
@@ -45,6 +47,16 @@ void maiorElemento (int *vet, int tamanho, int *p, int *ct)
                 maior = i;
             }
         }
-    *p = maior;
+    *p = *(vet+maior);
+    return;
+}
+
+void imprimeVetor (int *vet, int tamanho)
+{
+    for (int i=0; i<tamanho; i++)
+    {
+        printf("%d ", *(vet+i));
+    }
+    printf("\n");
     return;
 }

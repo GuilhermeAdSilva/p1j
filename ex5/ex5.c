@@ -51,7 +51,7 @@ void imprimeVetor (int *vet, int tamanho)
 
 void paresSomak (int k, int *vet, int tamanho)
 {
-    int temp, contIndice = 0;
+    int temp, contIndice = 0, tempo = 0;
     int *indices = malloc(sizeof(int)), *pares = malloc(sizeof(int));
     *pares = 0;
     printf("valor de k = %d\n", k);
@@ -59,6 +59,7 @@ void paresSomak (int k, int *vet, int tamanho)
     {
         for(int j=i; j<tamanho-1; j++)
         {
+            tempo++;
             if((*(vet+i)) + (*(vet+j+1)) == k)
             {
                 *(indices+contIndice) = *(vet+i);
@@ -75,5 +76,7 @@ void paresSomak (int k, int *vet, int tamanho)
     {
         printf("(%d, %d) ", *(indices+i), *(indices+i+1));
     }
+    printf("\nComplexidade de tempo: %d\n", tempo);
+    printf("Complexidade: O(^2)");
     return;
 }

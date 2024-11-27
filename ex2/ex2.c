@@ -10,6 +10,7 @@ Conte as instruções que são função de n e compare os resultados.*/
 void preencheVetor (int *vet, int tamanho);
 void ordenaVetor (int *vet, int tamanho);
 void maiorElemento (int *vet, int tamanho, int *p, int *ct);
+void imprimeVetor (int *vet, int tamanho);
 
 int main ()
 {
@@ -21,9 +22,10 @@ int main ()
     preencheVetor(vetor, TAM);
     ordenaVetor(vetor, TAM);
     maiorElemento(vetor, TAM, p, contatempo);
-    free(contatempo);
-    free(vetor);
-    free(p);
+    imprimeVetor(vetor, TAM);
+    printf("\nMaior elemento: %d\n", *p);
+    printf("Complexidade de tempo: %d\n", *contatempo);
+    printf("Complexidade O(1)\n");
     return 0;
 }
 
@@ -58,5 +60,15 @@ void maiorElemento (int *vet, int tamanho, int *p, int *ct)
 {
     (*ct)++; //numero de execuções será: 1, complexidade ctt O(1)
     *p = *(vet+tamanho-1);
+    return;
+}
+
+void imprimeVetor (int *vet, int tamanho)
+{
+    for (int i=0; i<tamanho; i++)
+    {
+        printf("%d ", *(vet+i));
+    }
+    printf("\n");
     return;
 }
