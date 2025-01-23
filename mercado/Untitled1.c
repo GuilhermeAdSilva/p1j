@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
+#include <string.h> // Necessário para strcspn
 #define TAM 20
 
 typedef struct estoque
